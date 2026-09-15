@@ -37,16 +37,6 @@ write_if_different /etc/modprobe.d/nvidia-drm-modeset.conf \
 'options nvidia_drm modeset=1 fbdev=1
 '
 
-echo "==> [3/5] Xorg: AMD como GPU primaria (por si se usa alguna sesión X11)"
-write_if_different /etc/X11/xorg.conf.d/10-primary-gpu.conf \
-'Section "OutputClass"
-    Identifier "AMD"
-    MatchDriver "amdgpu"
-    Driver "amdgpu"
-    Option "PrimaryGPU" "yes"
-EndSection
-'
-
 echo "==> [4/5] SDDM: greeter en Wayland con kwin_wayland (fix real del pantallazo en negro)"
 write_if_different /etc/sddm.conf.d/10-wayland-greeter.conf \
 '[General]
@@ -54,12 +44,6 @@ DisplayServer=wayland
 
 [Wayland]
 CompositorCommand=kwin_wayland --drm --no-lockscreen --no-global-shortcuts --locale1
-'
-
-echo "==> [5/5] Red: driver r8168 en vez de r8169 (fix de velocidad, 100Mb -> gigabit)"
-pacman -S --needed --noconfirm linux71-r8168
-write_if_different /etc/modprobe.d/blacklist-r8169.conf \
-'blacklist r8169
 '
 
 echo
