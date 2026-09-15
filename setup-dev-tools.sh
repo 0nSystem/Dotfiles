@@ -109,10 +109,10 @@ else
     echo "    Instalando oh-my-zsh (modo desatendido, sin cambiar el shell por defecto;"
     echo "    detalle en el log). El instalador hace su comportamiento estándar: se queda"
     echo "    con una copia de tu .zshrc anterior (.zshrc.pre-oh-my-zsh) y escribe el suyo."
-    export RUNZSH=no CHSH=no
+    #export RUNZSH=no CHSH=no
     run_logged sh -c \
         "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-    unset RUNZSH CHSH
+    #unset RUNZSH CHSH
 fi
 
 echo "==> [3/8] yay (AUR helper)"
